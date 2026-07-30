@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://be05kyhdylyp8" path="res://assets/images/Player/Player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://y7ecbg0agbe4" path="res://player.gd" id="1_g2els"]
+[ext_resource type="AudioStream" uid="uid://c1mtog5h38sli" path="res://assets/audio/whoosh.wav" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4otl"]
 atlas = ExtResource("1_3vyb7")
@@ -393,5 +394,9 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2049534641]
 sprite_frames = SubResource("SpriteFrames_6q2t7")
 animation = &"attack_up"
+
+[node name="SwingSword" type="AudioStreamPlayer2D" parent="." unique_id=319943971]
+stream = ExtResource("3_qhqgy")
+pitch_scale = 3.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

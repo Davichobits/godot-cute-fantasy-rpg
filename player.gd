@@ -11,8 +11,9 @@ var last_direction: Vector2 = Vector2.RIGHT
 # Vector2.ZERO  -> (0, 0)
 # Vector2.ONE   -> (1, 1)
 
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 # @onready -> wait until the node has been entered on scene
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var swing_sword = $SwingSword
 
 func _physics_process(_delta: float) -> void:
 	
@@ -58,6 +59,7 @@ func play_animation(prefix: String, dir: Vector2) -> void:
 		animated_sprite_2d.play(prefix + "_down")
 
 func attack() -> void:
+	swing_sword.play()
 	is_attacking = true
 	play_animation("attack", last_direction)
 
