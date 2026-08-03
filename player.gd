@@ -22,6 +22,8 @@ func _ready() -> void:
 	hitbox_offset = hitbox.position
 
 func _physics_process(_delta: float) -> void:
+	# Disable hitbox until an attack is trigered
+	hitbox.monitoring = false
 	
 	if Input.is_action_just_pressed("attack") and not is_attacking:
 		attack()
@@ -65,8 +67,9 @@ func play_animation(prefix: String, dir: Vector2) -> void:
 		animated_sprite_2d.play(prefix + "_down")
 
 func attack() -> void:
-	swing_sword.play()
 	is_attacking = true
+	hitbox.monitoring = true
+	swing_sword.play()
 	play_animation("attack", last_direction)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
@@ -86,3 +89,8 @@ func update_hitbox_offset() -> void:
 			hitbox.position = Vector2(y, -x)
 		Vector2.DOWN:
 			hitbox.position = Vector2(y, x)
+
+
+func _on_hitbox_body_entered(body):
+	if is_attacking and body.name.begins_with("Slime"):
+		print("hit")
