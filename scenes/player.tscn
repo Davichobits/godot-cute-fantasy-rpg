@@ -408,6 +408,7 @@ pitch_scale = 3.0
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=678382877]
 position = Vector2(7.5, -0.5)
+collision_mask = 2
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1302323056]
