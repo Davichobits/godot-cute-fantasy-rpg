@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://csa4sk2nuwjpi"]
 
-[ext_resource type="Texture2D" uid="uid://be05kyhdylyp8" path="res://assets/images/Player/Player.png" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://cdi62lyy211c5" path="res://assets/images/player/Player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://y7ecbg0agbe4" path="res://player.gd" id="1_g2els"]
 [ext_resource type="AudioStream" uid="uid://c1mtog5h38sli" path="res://assets/audio/whoosh.wav" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://dpitvwkwjrtp0" path="res://scripts/camera_2d.gd" id="4_dqkch"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4otl"]
 atlas = ExtResource("1_3vyb7")
@@ -417,6 +418,11 @@ shape = SubResource("RectangleShape2D_6q2t7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1653001216]
 position = Vector2(-1, 4.5)
 shape = SubResource("RectangleShape2D_scdiy")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1985684307]
+limit_left = 0
+limit_top = 0
+script = ExtResource("4_dqkch")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
