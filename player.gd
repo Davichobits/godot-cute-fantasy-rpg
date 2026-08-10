@@ -11,6 +11,7 @@ var last_direction: Vector2 = Vector2.RIGHT
 # Vector2.DOWN  -> (0, 1)
 # Vector2.ZERO  -> (0, 0)
 # Vector2.ONE   -> (1, 1)
+var strength: int = 20
 
 # @onready -> wait until the node has been entered on scene
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -93,4 +94,5 @@ func update_hitbox_offset() -> void:
 
 func _on_hitbox_body_entered(body):
 	if is_attacking and body.name.begins_with("Slime"):
-		print("hit")
+		body.take_damage(strength, position)
+		print(body.health)

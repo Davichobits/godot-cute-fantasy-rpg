@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="top-down-tutorial"
+config/name="cute-fantasy-rpg"
 run/main_scene="uid://he7f36mfmak2"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://cuvb6qqk05u3r"
 
 [display]
 
