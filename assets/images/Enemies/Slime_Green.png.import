@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqejl3odytdly"
-path="res://.godot/imported/Slime_Green.png-72a8c327cf07c8141c502debe868dec5.ctex"
+uid="uid://dvy0rlj3xux5t"
+path="res://.godot/imported/Slime_Green.png-58882462f57f3fb622aa9d701ef8187e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/Enemies/Slime_Green.png"
-dest_files=["res://.godot/imported/Slime_Green.png-72a8c327cf07c8141c502debe868dec5.ctex"]
+source_file="res://assets/images/enemies/Slime_Green.png"
+dest_files=["res://.godot/imported/Slime_Green.png-58882462f57f3fb622aa9d701ef8187e.ctex"]
 
 [params]
 

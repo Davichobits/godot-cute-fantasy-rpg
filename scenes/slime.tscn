@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dqejl3odytdly" path="res://assets/images/Enemies/Slime_Green.png" id="1_371uh"]
 [ext_resource type="Script" uid="uid://byp1hmlwpr7q2" path="res://scripts/slime.gd" id="1_p2gj0"]
 [ext_resource type="AudioStream" uid="uid://ev8qsayhxcee" path="res://assets/audio/hit_enemy.wav" id="3_n6pvg"]
+[ext_resource type="PackedScene" uid="uid://snfp100fo4ws" path="res://scenes/health_bar.tscn" id="4_pjw23"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p2gj0"]
 atlas = ExtResource("1_371uh")
@@ -175,7 +176,7 @@ script = ExtResource("1_p2gj0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1232508989]
 sprite_frames = SubResource("SpriteFrames_6q2t7")
-animation = &"idle"
+animation = &"die"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=368317199]
@@ -190,6 +191,9 @@ shape = SubResource("CircleShape2D_6q2t7")
 [node name="TakeDamage" type="AudioStreamPlayer2D" parent="." unique_id=196394815]
 stream = ExtResource("3_n6pvg")
 pitch_scale = 0.75
+
+[node name="HealthBar" parent="." unique_id=345197138 instance=ExtResource("4_pjw23")]
+position = Vector2(-9, 9)
 
 [connection signal="body_entered" from="Sight" to="." method="_on_sight_body_entered"]
 [connection signal="body_exited" from="Sight" to="." method="_on_sight_body_exited"]

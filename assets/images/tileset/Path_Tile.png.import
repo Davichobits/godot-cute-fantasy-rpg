@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l1bgsy3ci35x"
-path="res://.godot/imported/Grass_Middle.png-bd98660a4c3d518c8c732f5a9feed983.ctex"
+uid="uid://clbrxu6gw2bdm"
+path="res://.godot/imported/Path_Tile.png-426768f2ee3a73e17e63b5e7963b79b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/Tiles/Grass_Middle.png"
-dest_files=["res://.godot/imported/Grass_Middle.png-bd98660a4c3d518c8c732f5a9feed983.ctex"]
+source_file="res://assets/images/tileset/Path_Tile.png"
+dest_files=["res://.godot/imported/Path_Tile.png-426768f2ee3a73e17e63b5e7963b79b2.ctex"]
 
 [params]
 

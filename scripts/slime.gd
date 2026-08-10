@@ -3,14 +3,16 @@ extends CharacterBody2D
 const SPEED: int = 100
 const KNOCKBACK_FORCE: int = 100
 
+var is_alive: bool = true
 var target = null
 var health:int = 100
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var take_damage_audio = $TakeDamage
+@onready var take_damage_sound = $TakeDamage
+@onready var health_bar = $HealthBar
 
 func _physics_process(delta):
-	if target:
+	if is_alive and target:
 		_attack(delta)
 	
 func _attack(delta: float) -> void:
@@ -18,14 +20,30 @@ func _attack(delta: float) -> void:
 	position += direction * SPEED * delta
 	animated_sprite_2d.play("attack")
 
+
 func take_damage(damage: int, attaker_position: Vector2) -> void:
 	health -= damage
-	take_damage_audio.play()
+	take_damage_sound.play()
 	# knockback
 	var knockback_direction = (position - attaker_position).normalized()
 	var target_position = position + knockback_direction * KNOCKBACK_FORCE
 	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(self, "position", target_position, 0.5)
+	health_bar.update_health(health)
+	if health <= 0:
+		die()
+	
+func die() -> void:
+	is_alive = false
+	animated_sprite_2d.play("die")
+	take_damage_sound.pitch_scale = 0.5
+	take_damage_sound.play()
+	
+	# Disable collision
+	$CollisionShape2D.set_deferred("disabled", true)
+	$Sight/CollisionShape2D.set_deferred("disabled", true)
 
 func _on_sight_body_entered(body):
 	if body.name == "Player":
@@ -35,4 +53,5 @@ func _on_sight_body_entered(body):
 func _on_sight_body_exited(body):
 	if body.name == "Player":
 		target = null
-		animated_sprite_2d.play("idle")
+		if is_alive:
+			animated_sprite_2d.play("idle")

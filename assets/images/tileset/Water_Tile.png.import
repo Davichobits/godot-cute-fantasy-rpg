@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8lvq1s6prg2c"
-path="res://.godot/imported/Path_Tile.png-95c6f82474bda4a08157155caa14af3b.ctex"
+uid="uid://ds37xwlus8i4m"
+path="res://.godot/imported/Water_Tile.png-0c5234cdd42eb413f41de1c5813b11d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/Tiles/Path_Tile.png"
-dest_files=["res://.godot/imported/Path_Tile.png-95c6f82474bda4a08157155caa14af3b.ctex"]
+source_file="res://assets/images/tileset/Water_Tile.png"
+dest_files=["res://.godot/imported/Water_Tile.png-0c5234cdd42eb413f41de1c5813b11d5.ctex"]
 
 [params]
 

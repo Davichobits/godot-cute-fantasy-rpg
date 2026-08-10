@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh54jjthhi27a"
-path="res://.godot/imported/Skeleton.png-b04748e8e2447401c3f413d5db62c46d.ctex"
+uid="uid://c1jomajw2gafn"
+path="res://.godot/imported/LifeBarMiniProgress.png-4e749ee9dc15a0f009f4796a184e8d13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/enemies/Skeleton.png"
-dest_files=["res://.godot/imported/Skeleton.png-b04748e8e2447401c3f413d5db62c46d.ctex"]
+source_file="res://assets/images/UI/LifeBarMiniProgress.png"
+dest_files=["res://.godot/imported/LifeBarMiniProgress.png-4e749ee9dc15a0f009f4796a184e8d13.ctex"]
 
 [params]
 
