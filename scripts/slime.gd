@@ -5,11 +5,14 @@ const KNOCKBACK_FORCE: int = 100
 
 var is_alive: bool = true
 var target = null
-var health:int = 100
+var target_in_range: bool = false
+var health: int = 100
+var strength: int = 10 
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var take_damage_sound = $TakeDamage
 @onready var health_bar = $HealthBar
+@onready var attack_timer = $Attack_Timer
 
 func _physics_process(delta):
 	if is_alive and target:
@@ -19,7 +22,6 @@ func _attack(delta: float) -> void:
 	var direction = (target.position - position).normalized()
 	position += direction * SPEED * delta
 	animated_sprite_2d.play("attack")
-
 
 func take_damage(damage: int, attaker_position: Vector2) -> void:
 	health -= damage
@@ -49,9 +51,23 @@ func _on_sight_body_entered(body):
 	if body.name == "Player":
 		target = body
 
-
 func _on_sight_body_exited(body):
 	if body.name == "Player":
 		target = null
 		if is_alive:
 			animated_sprite_2d.play("idle")
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		target_in_range = true
+		body.take_damage(strength)
+		attack_timer.start()
+
+func _on_hitbox_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		target_in_range = false
+		attack_timer.stop()
+
+func _on_attack_timer_timeout():
+	if target and target_in_range:
+		target.take_damage(strength)

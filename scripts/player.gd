@@ -12,6 +12,8 @@ var last_direction: Vector2 = Vector2.RIGHT
 # Vector2.ZERO  -> (0, 0)
 # Vector2.ONE   -> (1, 1)
 var strength: int = 20
+var health: int
+var max_health: int
 
 # @onready -> wait until the node has been entered on scene
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -19,6 +21,8 @@ var strength: int = 20
 @onready var hitbox = $Hitbox
 
 func _ready() -> void:
+	health = PlayerStats.health
+	max_health = PlayerStats.max_health
 	# initialise hitbox offset
 	hitbox_offset = hitbox.position
 
@@ -91,8 +95,12 @@ func update_hitbox_offset() -> void:
 		Vector2.DOWN:
 			hitbox.position = Vector2(y, x)
 
-
 func _on_hitbox_body_entered(body):
 	if is_attacking and body.name.begins_with("Slime"):
 		body.take_damage(strength, position)
 		print(body.health)
+
+func take_damage(amount: int) -> void:
+	health -= amount
+	PlayerStats.health = health
+	print(health)
