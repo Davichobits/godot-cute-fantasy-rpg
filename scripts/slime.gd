@@ -58,7 +58,7 @@ func _on_sight_body_exited(body):
 			animated_sprite_2d.play("idle")
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
+	if body.name == "Player" and is_alive:
 		target_in_range = true
 		body.take_damage(strength)
 		attack_timer.start()

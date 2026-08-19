@@ -17,8 +17,10 @@ var max_health: int
 
 # @onready -> wait until the node has been entered on scene
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var swing_sword = $SwingSword
-@onready var hitbox = $Hitbox
+@onready var take_damage_sound: AudioStreamPlayer2D = $TakeDamage
+@onready var swing_sword: AudioStreamPlayer2D = $SwingSword
+@onready var damage_cooldown: Timer = $DamageCooldown
+@onready var hitbox: Area2D = $Hitbox
 
 func _ready() -> void:
 	health = PlayerStats.health
@@ -101,6 +103,11 @@ func _on_hitbox_body_entered(body):
 		print(body.health)
 
 func take_damage(amount: int) -> void:
+	if damage_cooldown.time_left > 0:
+		return
+		
 	health -= amount
 	PlayerStats.health = health
-	print(health)
+	take_damage_sound.play()
+	# Make player invincible for a short time
+	damage_cooldown.start()
