@@ -14,11 +14,13 @@ var last_direction: Vector2 = Vector2.RIGHT
 var strength: int = 20
 var health: int
 var max_health: int
+var is_alive: bool = true
 
 # @onready -> wait until the node has been entered on scene
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var take_damage_sound: AudioStreamPlayer2D = $TakeDamage
-@onready var swing_sword: AudioStreamPlayer2D = $SwingSword
+@onready var swing_sword_sound: AudioStreamPlayer2D = $SwingSword
+@onready var dying_sound: AudioStreamPlayer2D = $Dying
 @onready var damage_cooldown: Timer = $DamageCooldown
 @onready var hitbox: Area2D = $Hitbox
 
@@ -31,18 +33,18 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	# Disable hitbox until an attack is trigered
 	hitbox.monitoring = false
-	
-	if Input.is_action_just_pressed("attack") and not is_attacking:
-		attack()
+	if is_alive:
+		if Input.is_action_just_pressed("attack") and not is_attacking:
+			attack()
+			
+		# skip movement if attacking
+		if is_attacking:
+			velocity = Vector2.ZERO
+			return
 		
-	# skip movement if attacking
-	if is_attacking:
-		velocity = Vector2.ZERO
-		return
-	
-	process_movement()
-	process_animation()
-	move_and_slide()
+		process_movement()
+		process_animation()
+		move_and_slide()
 
 func process_movement() -> void:
 	# Get the input direction and handle the movement/deceleration.
@@ -76,7 +78,7 @@ func play_animation(prefix: String, dir: Vector2) -> void:
 func attack() -> void:
 	is_attacking = true
 	hitbox.monitoring = true
-	swing_sword.play()
+	swing_sword_sound.play()
 	play_animation("attack", last_direction)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
@@ -103,11 +105,22 @@ func _on_hitbox_body_entered(body):
 		print(body.health)
 
 func take_damage(amount: int) -> void:
+	if not is_alive:
+		return
 	if damage_cooldown.time_left > 0:
 		return
 		
 	health -= amount
-	PlayerStats.health = health
-	take_damage_sound.play()
-	# Make player invincible for a short time
-	damage_cooldown.start()
+	print(health)
+	if health <= 0:
+		die()
+	else:
+		PlayerStats.health = health
+		take_damage_sound.play()
+		# Make player invincible for a short time
+		damage_cooldown.start()
+
+func die() -> void:
+	animated_sprite_2d.play("dying")
+	dying_sound.play()
+	is_alive = false

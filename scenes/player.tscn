@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://c1mtog5h38sli" path="res://assets/audio/whoosh.wav" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://dpitvwkwjrtp0" path="res://scripts/camera_2d.gd" id="4_dqkch"]
 [ext_resource type="AudioStream" uid="uid://2aoysjtdxack" path="res://assets/audio/player_damage.wav" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://ci2hgtn7c5dxs" path="res://assets/audio/dying.wav" id="6_tuyoq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4otl"]
 atlas = ExtResource("1_3vyb7")
@@ -53,6 +54,22 @@ region = Rect2(64, 256, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_u2ulf"]
 atlas = ExtResource("1_3vyb7")
 region = Rect2(96, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e8lb"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(0, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gdjj"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(32, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sc3ue"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(64, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxlsd"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(96, 288, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -253,6 +270,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_6e8lb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gdjj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sc3ue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxlsd")
+}],
+"loop": 0,
+"name": &"dying",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_g2els")
 }, {
 "duration": 1.0,
@@ -401,8 +435,7 @@ script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2049534641]
 sprite_frames = SubResource("SpriteFrames_6q2t7")
-animation = &"attack_right"
-frame = 1
+animation = &"dying"
 
 [node name="SwingSword" type="AudioStreamPlayer2D" parent="." unique_id=319943971]
 stream = ExtResource("3_qhqgy")
@@ -431,6 +464,9 @@ stream = ExtResource("5_qlg0r")
 [node name="DamageCooldown" type="Timer" parent="." unique_id=862423206]
 wait_time = 0.5
 one_shot = true
+
+[node name="Dying" type="AudioStreamPlayer2D" parent="." unique_id=1939443074]
+stream = ExtResource("6_tuyoq")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
