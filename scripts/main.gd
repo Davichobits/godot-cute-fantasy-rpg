@@ -20,6 +20,10 @@ func _load_level(level_number:int) -> void:
 	_setup_level(current_level_root)
 
 func _setup_level(root_level) -> void:
+	# Connect Player
+	var player = current_level_root.get_node("Player")
+	player.died.connect(_on_player_died)
+	
 	var exit = current_level_root.get_node_or_null("Exit")
 	if exit:
 		exit.body_entered.connect(_on_exit_body_entered)
@@ -28,3 +32,8 @@ func _on_exit_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		level += 1
 		call_deferred("_load_level", level)
+
+func _on_player_died() -> void:
+	level = 1
+	PlayerStats.reset()
+	_load_level(level)
