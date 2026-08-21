@@ -21,7 +21,7 @@ func _load_level(level_number:int) -> void:
 	current_level_root.name = "LevelRoot"
 	_setup_level(current_level_root)
 
-func _setup_level(root_level) -> void:
+func _setup_level(_root_level) -> void:
 	# Connect Player
 	var player = current_level_root.get_node("Player")
 	player.died.connect(_on_player_died)
