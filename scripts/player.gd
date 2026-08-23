@@ -106,6 +106,13 @@ func _on_hitbox_body_entered(body):
 	if is_attacking and body.name.begins_with("Slime"):
 		body.take_damage(strength, position)
 		print(body.health)
+		
+func heal(amount: int) -> void:
+	health += amount
+	if health >= max_health:
+		health = max_health
+	PlayerStats.health = health
+	emit_signal("health_changed", health)
 
 func take_damage(amount: int) -> void:
 	if not is_alive:

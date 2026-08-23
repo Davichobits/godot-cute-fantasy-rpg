@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bay1klh4m3ba" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://0gm3mke782ly" path="res://scenes/hud.tscn" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://27kic58mbx6q" path="res://scenes/levels/base_level.tscn" id="3_sugp2"]
+[ext_resource type="AudioStream" uid="uid://m31caxnucano" path="res://assets/audio/music.wav" id="4_jyhfs"]
 
 [node name="Main" type="Node2D" unique_id=828750889]
 script = ExtResource("1_0wfyh")
@@ -10,3 +11,7 @@ script = ExtResource("1_0wfyh")
 [node name="LevelRoot" parent="." unique_id=425824990 instance=ExtResource("3_sugp2")]
 
 [node name="HUD" parent="." unique_id=2007587191 instance=ExtResource("3_jyhfs")]
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=315987980]
+stream = ExtResource("4_jyhfs")
+autoplay = true
