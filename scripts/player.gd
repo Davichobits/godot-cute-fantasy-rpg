@@ -3,6 +3,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 
 signal died
+signal health_changed(new_health: int)
 
 var is_attacking: bool = false
 var hitbox_offset: Vector2
@@ -113,7 +114,9 @@ func take_damage(amount: int) -> void:
 		return
 		
 	health -= amount
-	print(health)
+	# health_changed.emit(health)
+	emit_signal("health_changed", health)
+	
 	if health <= 0:
 		die()
 	else:
