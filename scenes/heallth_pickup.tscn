@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dskulye2pxhy3" path="res://assets/images/items/iconHearth.png" id="1_1ifbt"]
 [ext_resource type="Script" uid="uid://dcoioc26ex848" path="res://scripts/heallth_pickup.gd" id="1_g80w0"]
+[ext_resource type="AudioStream" uid="uid://d3qo0xujs37qk" path="res://assets/audio/health_pickup.wav" id="3_ner3s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6q2t7"]
 size = Vector2(42, 36)
@@ -15,5 +16,8 @@ texture = ExtResource("1_1ifbt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2084311786]
 shape = SubResource("RectangleShape2D_6q2t7")
+
+[node name="CollectedSound" type="AudioStreamPlayer2D" parent="." unique_id=1564507726]
+stream = ExtResource("3_ner3s")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
