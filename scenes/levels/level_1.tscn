@@ -1,9 +1,5 @@
 [gd_scene format=3 uid="uid://co7jdc38kc21b"]
 
 [ext_resource type="PackedScene" uid="uid://27kic58mbx6q" path="res://scenes/levels/base_level.tscn" id="1_ksju7"]
-[ext_resource type="PackedScene" uid="uid://kkujyytvhkt8" path="res://scenes/heallth_pickup.tscn" id="2_6iamk"]
 
 [node name="LevelRoot" unique_id=425824990 instance=ExtResource("1_ksju7")]
-
-[node name="HeallthPickup" parent="Items" parent_id_path=PackedInt32Array(697300908) index="0" unique_id=1011572961 instance=ExtResource("2_6iamk")]
-position = Vector2(856, 1035)
